@@ -1,0 +1,45 @@
+/*
+Algoritmo Nómina
+Elaborado por: Araceli Martínez Luna
+Fecha de elaboración: 08 de Diciembre de 2017
+*/
+
+#include<iostream>
+using namespace std;
+int main(){
+	char nombre[100]; //Almacena hasta 100 caracteres para el nombre.
+	int horas; //Es una variable de tipo entero.
+	float tarifa, impuestos, sbruto, sneto; //Son variables reales o con decimales.
+
+	cout<<"Ingrese su nombre completo: ";
+	cin.getline(nombre,100);  //Lectura de la variable incluyendo el caracter "espacio".
+	cout<<"Ingrese el numero de horas laboradas: ";
+	cin>>horas; //Lee las horas ingresadas por el trabajador
+	cout<<"Ingrese la tarifa: ";
+	cin>>tarifa; //Lee el precio a pagar por hora
+	
+	if (horas<=35) {
+		sbruto = horas*tarifa;
+	} else {
+		sbruto = 35*tarifa+(horas-35)*15*tarifa; //La constante "15" esta definida de manera distinta (en el diagrama NS se le asigna un valor de 15, en el pseudocodigo se le asigna un valor de 1.5)
+	}
+	
+	//Se establecen parámetros para calcular el impuesto del trabajador:
+	if (sbruto<=2000) {
+		impuestos = 0;
+	} else {
+		if ((sbruto>2000) && (sbruto<=2220)) {
+			impuestos = (sbruto-2000)*0.20;
+		} else {
+			impuestos = (220*0.20)+(sbruto-2220);
+		}
+	}
+	sneto = sbruto - impuestos; //Para calcular el salario neto o final se hace una resta entre el "salario bruto o inicial" menos los "impuestos", calculados anteriormente.
+	
+	//A continuación se muestran en pantalla los resultados obtenidos: 
+	cout <<"\nNombre: "<<nombre<<endl;
+	cout <<"Salario Bruto: "<<sbruto<<endl;	
+	cout <<"Impuestos: "<<impuestos<<endl;	
+	cout <<"Salario Neto: "<<sneto<<endl;	
+	return 0;
+}
